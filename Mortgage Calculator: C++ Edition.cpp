@@ -55,6 +55,7 @@ int main() {
     //parameters
     int principle = 0;
     float annualIR = 0.0f;
+    float monthlyIR;
 	short period = 0;
 	short amountOfPayments;
     
@@ -67,12 +68,12 @@ int main() {
     cin >> period;
     
 	//Calculation
-	annualIR /= 100; 
+	monthlyIR = (annualIR / 12) / 100; 
 	amountOfPayments = (short)(period * 12); 
 	
 	//Class object in Main 
 	CalculationThreads * user = new CalculationThreads();
-	user -> parameters(annualIR, amountOfPayments);
+	user -> parameters(monthlyIR, amountOfPayments);
 	
 	thread th1(&CalculationThreads::calculateNum, user);
 	thread th2(&CalculationThreads::calculateDem, user);
@@ -91,3 +92,4 @@ int main() {
 	
     return 0;
 }
+
